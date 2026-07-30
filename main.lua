@@ -5,6 +5,7 @@ screen = "menu"
 
 function love.load()
     love.window.setTitle("Meu Jogo")
+    title = love.graphics.newImage("assets/arts/title.png")
 end
 
 function love.update(dt)
