@@ -1,7 +1,9 @@
-function love.load()
-    love.window.setTitle("Meu Jogo")
-end
+function love.conf(t)
+    t.window.title = "Meu Jogo"
 
-function love.draw()
-    love.graphics.print("Olá, Pedro!", 100, 100)
+    t.window.width = 1280
+    t.window.height = 720
+
+    t.window.resizable = false
+    t.window.vsync = 1
 end
