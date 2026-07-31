@@ -7,6 +7,7 @@ function love.load()
     love.window.setTitle("Meu Jogo")
     title = love.graphics.newImage("assets/images/title.png")
     playButton = love.graphics.newImage("assets/images/play.png")
+    configButton = love.graphics.newImage("assets/images/config.png")
 end
 
 function love.update(dt)
