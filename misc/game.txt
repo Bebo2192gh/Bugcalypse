@@ -13,5 +13,32 @@ Pedro Rosa Lazzarin
 Data de início do desenv.:
 30 de Julho de 2026
 
-Versão:
-1.0 pre-alpha
+CONTEÚDO DO JOGO:
+    Materiais:
+        Madeira
+        Pedra
+        Folhas
+        Gravetos
+        Ferro
+        Ouro
+        Diamante
+        Urânio
+        Rubi
+        Esmeralda
+        Gelo
+        Pérola do mar
+        Titânio
+        Platina
+    Itens de Inimigos:
+        Ferrão de abelha
+        Teia de aranha
+        Olhos de mosca
+        Veneno de mosquito
+        Fragmentos de carcaça de centopeia
+    Armas e armaduras:
+        Armadura de Platina, Ouro, Ferro, Titânio, Madeira
+        Estilingue
+        Espada, Machado, Martelo, Lança, Facas, Tridente, Foice de Platina, Ouro, Ferro, Titânio, Madeira
+        Arco e flecha
+        Bastão de madeira
+        Canhão de Braço

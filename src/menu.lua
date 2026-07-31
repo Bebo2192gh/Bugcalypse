@@ -7,8 +7,8 @@ function Menu.draw()
 
     love.graphics.draw(redlight, 1280 / 2 - redlight:getWidth() / 2, 80)
     love.graphics.draw(title, 1280 / 2 - title:getWidth() / 2, 100)
-    love.graphics.print("made by:ML studios", 1035, 690, 0, 2, 2)
-    love.graphics.print("pré-alpha v1.0", 1100, 665, 0, 2, 2)
+    love.graphics.print("ML studios 2026", 1075, 690, 0, 2, 2)
+    love.graphics.print("v0.1", 1220, 665, 0, 2, 2)
 end
 
 function Menu.update(dt)
