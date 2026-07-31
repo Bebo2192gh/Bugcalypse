@@ -4,10 +4,11 @@ local Game = require("src.game")
 screen = "menu"
 
 function love.load()
+    love.graphics.setDefaultFilter("nearest", "nearest")
     love.window.setTitle("Meu Jogo")
     title = love.graphics.newImage("assets/images/title.png")
-    playButton = love.graphics.newImage("assets/images/play.png")
-    configButton = love.graphics.newImage("assets/images/config.png")
+    playButton = love.graphics.newImage("assets/sprites/playbutton.png")
+    configButton = love.graphics.newImage("assets/sprites/configbutton.png")
 end
 
 function love.update(dt)
