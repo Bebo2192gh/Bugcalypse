@@ -2,6 +2,7 @@ local Menu = require("src.menu")
 local Game = require("src.game")
 local Configs = require("src.configs")
 local PlayerSelect = require("src.player_select")
+local conf = require("conf")
 
 screen = "menu"
 fade = 1
@@ -53,13 +54,11 @@ function love.update(dt)
                 mx <= 1280 / 2 + quitButton:getWidth() / 2 and
                 my >= 470 and
                 my <= 570
+end
 
-    if screen == "configs" and love.keyboard.isDown("escape") then
-        screen = "menu"
-    end
-
-    if screen == "player_select" and love.keyboard.isDown("escape") then
-        screen = "menu"
+function love.keypressed(key)
+    if key == "f11" then
+        love.window.setFullscreen(not love.window.getFullscreen())
     end
 end
 
@@ -70,25 +69,28 @@ function love.mousepressed(x, y, button)
     x = x / sx
     y = y / sy
 
-    if button == 1 then
+    if screen == "menu" and button == 1 then
         if x >= 1280 / 2 - playButton:getWidth() / 2 and x <= 1280 / 2 + playButton:getWidth() / 2 and y >= 250 and y <= 350 then
             screen = "player_select"
             fade = 1
         end
     end
 
-    if button == 1 then
+    if screen == "menu" and button == 1 then
         if x >= 1280 / 2 - configButton:getWidth() / 2 and x <= 1280 / 2 + configButton:getWidth() / 2 and y >= 360 and y <= 460 then
             screen = "configs"
             fade = 1
         end
     end
 
-    if button == 1 then
+    if screen == "menu" and button == 1 then
         if x >= 1280 / 2 - quitButton:getWidth() / 2 and x <= 1280 / 2 + quitButton:getWidth() / 2 and y >= 470 and y <= 570 then
             love.event.quit()
         end
     end
+
+
+
 end
 
 function love.draw()
@@ -115,6 +117,9 @@ function love.draw()
     love.graphics.setColor(0, 0, 0, fade)
     love.graphics.rectangle("fill", 0, 0, virtualWidth, virtualHeight)
     love.graphics.setColor(1, 1, 1, 1)
+
+    love.graphics.print("FPS: " .. love.timer.getFPS(), 10, 10)
+    love.graphics.print("Fullscreen: F11", 10, 30)
 
     love.graphics.pop()
 end
