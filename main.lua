@@ -18,6 +18,9 @@ function love.load()
     playHover = false
     configHover = false
     quitHover = false
+
+    virtualWidth = 1280
+    virtualHeight = 720
 end
 
 function love.update(dt)
@@ -29,7 +32,12 @@ function love.update(dt)
 
     fade = math.max(fade - dt * 0.5, 0)
 
+    local sx = love.graphics.getWidth() / virtualWidth
+    local sy = love.graphics.getHeight() / virtualHeight
+
     local mx, my = love.mouse.getPosition()
+    mx = mx / sx
+    my = my / sy
 
     playHover = mx >= 1280 / 2 - playButton:getWidth() / 2 and
                 mx <= 1280 / 2 + playButton:getWidth() / 2 and
@@ -40,6 +48,7 @@ function love.update(dt)
                   mx <= 1280 / 2 + configButton:getWidth() / 2 and
                   my >= 360 and
                   my <= 460
+
     quitHover = mx >= 1280 / 2 - quitButton:getWidth() / 2 and
                 mx <= 1280 / 2 + quitButton:getWidth() / 2 and
                 my >= 470 and
@@ -48,21 +57,33 @@ function love.update(dt)
     if screen == "configs" and love.keyboard.isDown("escape") then
         screen = "menu"
     end
+
+    if screen == "player_select" and love.keyboard.isDown("escape") then
+        screen = "menu"
+    end
 end
 
 function love.mousepressed(x, y, button)
+    local sx = love.graphics.getWidth() / virtualWidth
+    local sy = love.graphics.getHeight() / virtualHeight
+
+    x = x / sx
+    y = y / sy
+
     if button == 1 then
         if x >= 1280 / 2 - playButton:getWidth() / 2 and x <= 1280 / 2 + playButton:getWidth() / 2 and y >= 250 and y <= 350 then
             screen = "player_select"
             fade = 1
         end
     end
+
     if button == 1 then
         if x >= 1280 / 2 - configButton:getWidth() / 2 and x <= 1280 / 2 + configButton:getWidth() / 2 and y >= 360 and y <= 460 then
             screen = "configs"
             fade = 1
         end
     end
+
     if button == 1 then
         if x >= 1280 / 2 - quitButton:getWidth() / 2 and x <= 1280 / 2 + quitButton:getWidth() / 2 and y >= 470 and y <= 570 then
             love.event.quit()
@@ -71,19 +92,29 @@ function love.mousepressed(x, y, button)
 end
 
 function love.draw()
+    local sx = love.graphics.getWidth() / virtualWidth
+    local sy = love.graphics.getHeight() / virtualHeight
+
+    love.graphics.push()
+    love.graphics.scale(sx, sy)
+
     if screen == "menu" then
         Menu.draw()
     elseif screen == "game" then
         Game.draw()
     end
+
     if screen == "configs" then
         Configs.draw()
     end
+
     if screen == "player_select" then
         PlayerSelect.draw()
     end
 
     love.graphics.setColor(0, 0, 0, fade)
-    love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
+    love.graphics.rectangle("fill", 0, 0, virtualWidth, virtualHeight)
     love.graphics.setColor(1, 1, 1, 1)
+
+    love.graphics.pop()
 end
